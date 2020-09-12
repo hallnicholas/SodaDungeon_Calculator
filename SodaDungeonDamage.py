@@ -1,4 +1,4 @@
-from numpy import floor
+#from numpy import floor
 """
 dmg = final damage
 b = damage before relics
@@ -40,31 +40,31 @@ while eCost < essence:
     dmg = d(FL, CL, PL)
 
     # f for Flat damage relic (+2)
-    fCost = floor(FL**(1.3))
+    fCost = round(FL**(1.3)-.5)
     fDmg = d(FL+1, CL, PL) - dmg
     fEff = fDmg / fCost
 
     # c for Character relic (+2 to all stats)
-    cCost = floor(CL**(1.3))
+    cCost = round(CL**(1.3)-.5)
     cDmg = d(FL, CL+1, PL) - dmg
     cEff = cDmg / cCost
 
     # p for Percent damage relic (+.2%)
-    pCost = floor(PL**(1.3))
+    pCost = round(PL**(1.3)-.5)
     pDmg = d(FL, CL, PL+1) - dmg
     #print (d(FL, CL, PL+1), dmg)
     pEff = pDmg / pCost
 
-    if cEff >= pEff and cEff >= fEff and eCost + floor(CL**(1.3)) < essence:
-        eCost += floor(CL**(1.3))
+    if cEff >= pEff and cEff >= fEff and eCost + round(CL**(1.3)) < essence:
+        eCost += round(CL**(1.3)-.5)
         CL    += 1
         CAdd  += 1
-    elif pEff >= fEff and pEff >= cEff and eCost + floor(PL**(1.3)) < essence:
-        eCost += floor(PL**(1.3))
+    elif pEff >= fEff and pEff >= cEff and eCost + round(PL**(1.3)) < essence:
+        eCost += round(PL**(1.3)-.5)
         PL    += 1
         PAdd  += 1
-    elif eCost + floor(FL**(1.3)) < essence:
-        eCost += floor(FL**(1.3))
+    elif eCost + round(FL**(1.3)-.5) < essence:
+        eCost += round(FL**(1.3)-.5)
         FL    += 1
         FAdd  += 1
     else:
@@ -92,3 +92,5 @@ print("Levels added:\t", CAdd, "\t\t", FAdd, "\t\t", PAdd)
 f = open("prevLvls.txt", 'w')
 
 print(b, "\n", FL, "\n", PL, "\n", CL, sep = '', file=f)
+
+close = input("Hit enter to close.\n")
