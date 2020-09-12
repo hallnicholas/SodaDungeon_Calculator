@@ -4,8 +4,11 @@
 This is a simple program. Input your current levels:
 
 Relic of Attack
+
 Relic of Magic Boost
-Relic of [Darkmage]
+
+Relic of [Character]
+
 
 Then input how much essence you have. The program will 
 tell you how to optimize your essence spending if all 
