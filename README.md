@@ -16,11 +16,17 @@ Potential things to add:
 
 Relic of Physical Boost (for now, just change the current 
     equation from .2 to .25)
+    
 [DONE] Saving feature? 
+
 Preference for Relic of Health & heavier weight to 
     Relic of [Darkmage] with ratio for how much you
     care about survivability
+    
 [DONE] Only print the chart once
+
 [PROGRESS] Rearrange the chart for readability/convenience
+
 Make the chart smarter instead of just using tabs
+
 [PROGRESS] Clean up comments
