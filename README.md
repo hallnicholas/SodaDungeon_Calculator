@@ -18,8 +18,11 @@ _______________________________________________________
 Recently changed:
 
 Replaced floor with round to not require numpy
+
 Hit enter to close so you can actually read the results
+
 Saving feature
+
 Only print the chart once
 
 _______________________________________________________

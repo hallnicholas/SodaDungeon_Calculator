@@ -16,13 +16,15 @@ try:
     PL = int(f.readline().rstrip('\n'))
     CL = int(f.readline().rstrip('\n'))
     essence = f.readline()
-    print("Your previously input levels are:")
+    print("\nYour previously input levels are:")
     print("Damage from Items:\t", b)
     print("Relic of Attack:\t", FL)
     print("Relic of Magic Boost:\t", PL)
     print("Relic of [Character]:\t", CL)
     f.close()
-    if input("Do you want to use these values? ").lower() == 'no':
+    if input("\nDo you want to use these values? \
+type 'no' to input new values, or just hit enter to  \
+continue.\n>").lower() == 'no':
         raise Exception("Clean slate, here we go..\n")
     essence = float(input("\nHow much essence do you have? "))
 except Exception:
@@ -88,6 +90,12 @@ print("___________________________________________________________")
 print("\t\t", "Character\t Flat\t\t Percentage")
 print("Final Level:\t", int(CL), "\t\t", int(FL), "\t\t", int(PL))
 print("Levels added:\t", CAdd, "\t\t", FAdd, "\t\t", PAdd)
+
+if input("\nBefore the program exits, \
+do you want to save these levels? for next time?\n>") == 'no':
+    exit()
+else:
+    pass
 
 f = open("prevLvls.txt", 'w')
 
