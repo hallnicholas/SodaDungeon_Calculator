@@ -9,11 +9,28 @@ CAdd  = 0
 FAdd  = 0
 PAdd  = 0
 
-b = 50 #int(input("Damage from items: "))
-FL = 948 #int(input("Flat damage relic Level: "))
-PL = 1079 #int(input("Magic percent relic Level: "))
-CL = 956 #int(input("Dark Mage's Level: "))
-essence = 958900 #int(input("How much essence do you have? "))
+try:
+    f = open("prevLvls.txt", 'r')
+    b = int(f.readline().rstrip('\n'))
+    FL = int(f.readline().rstrip('\n'))
+    PL = int(f.readline().rstrip('\n'))
+    CL = int(f.readline().rstrip('\n'))
+    essence = f.readline()
+    print("Your previously input levels are:")
+    print("Damage from Items:\t", b)
+    print("Relic of Attack:\t", FL)
+    print("Relic of Magic Boost:\t", PL)
+    print("Relic of [Character]:\t", CL)
+    f.close()
+    if input("Do you want to use these values? ").lower() == 'no':
+        raise Exception("Clean slate, here we go..\n")
+    essence = float(input("\nHow much essence do you have? "))
+except Exception:
+    b = int(input("Damage from items: "))
+    FL = int(input("Flat damage relic Level: "))
+    PL = int(input("Magic percent relic Level: "))
+    CL = int(input("Dark Mage's Level: "))
+    essence = int(input("How much essence do you have? "))
 
 def d(FL, CL, PL):
     return int((b+2*CL+2*FL)*(1+.002*PL))
@@ -54,30 +71,24 @@ while eCost < essence:
         break
 
     dmg = d(FL, CL, PL)
+    """
+    print("___________________________________________________________")
     print("\t\t", "Character\t Flat\t\t Percentage")
-    print("Level:\t\t", int(CL), "\t\t", int(FL), "\t\t", int(PL))
+    print("Final Level:\t", int(CL), "\t\t", int(FL), "\t\t", int(PL))
     print("Dmg diff: \t", int(cDmg), "\t\t", int(fDmg), "\t\t", int(pDmg))
     print("Cost: \t\t", int(cCost), "\t\t", int(fCost), "\t\t", int(pCost))
-    #print("Efficiency: \t", format(round(cEff, 3), '1.4e'), "\t", \
-    #       format(round(fEff, 3), "1.4e"), "\t", format(round(pEff, 3), '1.4e'))
+    print("Efficiency: \t", format(round(cEff, 3), '1.4e'), "\t", \
+           format(round(fEff, 3), "1.4e"), "\t", format(round(pEff, 3), '1.4e'))
     print("Levels added:\t", CAdd, "\t\t", FAdd, "\t\t", PAdd)
-    print("Damage: ", int(dmg))
-    print()
+    print("Damage before boosts: ", int(dmg))
+    """
 
-"""
-for i in range(500):
-    newLevel = "f" #input("upgrade which? Flat or Percent? (f/p): ")
-    if newLevel == 'f':
-        FL += 1
-        eCost += floor(FL**(1.3))
-    if newLevel == 'p':
-        PL += 1
-        eCost += floor(PL**(1.3))
-    dmg = int(0.55 * (b+2*FL)*(1.002*PL))
-    print("######################################################")
-    print("TOTAL DAMAGE:\t\t", dmg)
-    print("total essence Cost:\t", int(eCost))
-    print("Flat Dmg Level:\t\t", int(FL))
-    print("Percent dmg Level:\t", int(PL))
-    print("Damage per essence:", dmg/eCost)
-"""
+
+print("___________________________________________________________")
+print("\t\t", "Character\t Flat\t\t Percentage")
+print("Final Level:\t", int(CL), "\t\t", int(FL), "\t\t", int(PL))
+print("Levels added:\t", CAdd, "\t\t", FAdd, "\t\t", PAdd)
+
+f = open("prevLvls.txt", 'w')
+
+print(b, "\n", FL, "\n", PL, "\n", CL, sep = '', file=f)
